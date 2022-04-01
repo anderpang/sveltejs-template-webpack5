@@ -18,8 +18,8 @@ module.exports = function (env, argv) {
 		},
 		output: {
 			path: outputPath,
-			filename: 'js/[name].[fullhash].js',
-			chunkFilename: 'js/[name].[id].js',
+			filename: 'static/js/[name].[fullhash].js',
+			chunkFilename: 'static/js/[name].[id].js',
 			publicPath: PUBLIC_URL,
 		},
 		resolve: {
@@ -110,7 +110,14 @@ module.exports = function (env, argv) {
 			}),
 			new CopyWebpackPlugin({
 				patterns: [{
-					from: "public/**/*",
+					from: "static/**/*",
+					context:"public/",
+					to: outputPath
+				}, ],
+			}),
+			new CopyWebpackPlugin({
+				patterns: [{
+					from: "public/favicon.ico",
 					to: outputPath
 				}, ],
 			}),
